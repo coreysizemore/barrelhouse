@@ -45,6 +45,10 @@ header.fixed_height {
 	height: 600px;
 }
 
+header .header_cover {
+	background: #537963;
+}
+
 header.home_default_image {
 	background: url('../img/home.jpg') no-repeat;
     background-size: cover;
@@ -65,6 +69,13 @@ header.page_default_image {
 
 #home_logo {
 	bottom: 200px;
+	
+	#logo_home {
+		img {
+			width: 400px;
+			margin-bottom: 30px;
+		}
+	}
 	
 	#home_page_nav {
 		ul {
@@ -132,6 +143,8 @@ header.page_default_image {
 	a.button:link,
 	a.button:visited {
 		background: #537963;
+		margin-bottom: 5px;
+		margin-right: 10px;
 	}
 	
 	#tribe-events {
@@ -159,6 +172,13 @@ header.page_default_image {
 	
 	.tribe-events-promo {
 		display: none;
+	}
+	
+	.map_wrapper {
+		
+		iframe {
+			width: 100%;
+		}
 	}
 }
 
@@ -314,6 +334,14 @@ footer {
 	}
 }
 
+#tribe-events-content .tribe-events-calendar div[id*=tribe-events-event-] h3.tribe-events-month-event-title {
+	font-size: 16px !important;
+	font-weight: 600 !important;
+}
+
+.content form input[type="submit"] {
+	background: #537963;
+}
 
 
 @media (min-width: 980px) and (max-width: 1220px) {
@@ -326,9 +354,8 @@ footer {
 		bottom: 150px;
 		
 		#logo_home {
-			
 			img {
-				width: 250px;
+				width: 300px;
 			}
 		}
 	}
@@ -356,7 +383,7 @@ footer {
 		#logo_home {
 			
 			img {
-				width: 200px;
+				width: 250px;
 			}
 		}
 	}
