@@ -93,45 +93,49 @@
 						
 			while ( have_rows('on_tap_list') ) : the_row();
 			
-				echo '<div class="tap_item">';
+				if( get_sub_field('item_active')):
 			
-				echo '<h3 class="tap_title">';
-		        
-				the_sub_field('name');
+					echo '<div class="tap_item">';
 				
-				echo '</h3>';
+					echo '<h3 class="tap_title">';
+			        
+					the_sub_field('name');
 					
-				the_sub_field('description');
-				
-				$options = get_sub_field('avaliable_in');
-				
-				if( $options ):
-				
-					echo '<ul>';
+					echo '</h3>';
+						
+					the_sub_field('description');
 					
-					foreach( $options as $option ):
+					$options = get_sub_field('avaliable_in');
 					
-						echo '<li>';
-						
-						echo '<span class="';
-						
-						echo $option;
-						
-						echo '-icon"></span>';
-						
-						echo '</li>';
-						
-					endforeach;
+					if( $options ):
 					
-					echo '</ul>';
+						echo '<ul>';
+						
+						foreach( $options as $option ):
+						
+							echo '<li>';
+							
+							echo '<span class="';
+							
+							echo $option;
+							
+							echo '-icon"></span>';
+							
+							echo '</li>';
+							
+						endforeach;
+						
+						echo '</ul>';
+						
+					else :
 					
-				else :
-				
-					echo 'Not Currently Available';
+						// nothing
+						
+					endif;
+					
+					echo '</div>';
 					
 				endif;
-				
-				echo '</div>';
 	
 			endwhile;
 					
@@ -139,7 +143,7 @@
 							
 		else :
 		
-			echo '<div class="col_4 first"><div class="content" id="on_tap">Nothing On Tap</div></div>';
+			echo '<div class="col_4 first"><div class="content" id="on_tap"></div></div>';
 				
 		endif;
 		
@@ -153,57 +157,61 @@
 			
 			while ( have_rows('bottle_sales_list') ) : the_row();
 			
-				echo '<div class="tap_item">';
-				
-				echo '<img src="';
-				
-				the_sub_field('bottle_image');
-				
-				echo '" />';
+				if( get_sub_field('item_active')):
 			
-				echo '<h3 class="tap_title">';
-		        
-				the_sub_field('name');
-				
-				echo '</h3>';
+					echo '<div class="tap_item">';
 					
-				the_sub_field('description');
-				
-				$options = get_sub_field('available_at');
-				
-				if( $options ):
-				
-					echo '<ul>';
+					echo '<img src="';
 					
-					foreach( $options as $option ):
+					the_sub_field('bottle_image');
 					
-						echo '<li>';
+					echo '" />';
+				
+					echo '<h3 class="tap_title">';
+			        
+					the_sub_field('name');
+					
+					echo '</h3>';
 						
-						if ($option == 'inhouse'):
+					the_sub_field('description');
+					
+					$options = get_sub_field('available_at');
+					
+					if( $options ):
+					
+						echo '<ul>';
 						
-							echo 'In House&nbsp;';
+						foreach( $options as $option ):
+						
+							echo '<li>';
 							
-						endif;
-						
-						if ($option == 'retailer'):
-						
-							echo ' or <a href="#">Local Retailer</a>';
+							if ($option == 'inhouse'):
 							
-						endif;
-
-						echo '</li>';
+								echo 'In House&nbsp;';
+								
+							endif;
+							
+							if ($option == 'retailer'):
+							
+								echo ' or <a href="#">Local Retailer</a>';
+								
+							endif;
+	
+							echo '</li>';
+							
+						endforeach;
 						
-					endforeach;
+						echo '</ul>';
+						
+					else :
 					
-					echo '</ul>';
+						// nothing
+						
+					endif;
 					
-				else :
-				
-					echo 'Not Currently Available';
+					echo '</div>';
 					
 				endif;
-				
-				echo '</div>';
 	
 			endwhile;
 					
@@ -211,7 +219,7 @@
 		
 		else :
 		
-			echo '<div class="col_4"><div class="content" id="on_tap">Nothing For Sale</div></div>';
+			echo '<div class="col_4"><div class="content" id="on_tap"></div></div>';
 		
 		endif;
 		
@@ -223,37 +231,103 @@
 			
 			echo '<p>Cask Beers on tap Now:</p>';
 			
+			
+			
 			while ( have_rows('on_tap_now') ) : the_row();
 			
-				echo '<div class="tap_item">';
+				if( get_sub_field('item_active')):
 			
-				echo '<h3 class="tap_title">';
-		        
-				the_sub_field('name');
+					echo '<div class="tap_item">';
 				
-				echo '</h3>';
+					echo '<h3 class="tap_title">';
+			        
+					the_sub_field('name');
 					
-				the_sub_field('description');
-				
-				echo '</div>';
+					echo '</h3>';
+						
+					the_sub_field('description');
+					
+					$options = get_sub_field('avaliable_in');
+					
+					if( $options ):
+					
+						echo '<ul>';
+						
+						foreach( $options as $option ):
+						
+							echo '<li>';
+							
+							echo '<span class="';
+							
+							echo $option;
+							
+							echo '-icon"></span>';
+							
+							echo '</li>';
+							
+						endforeach;
+						
+						echo '</ul>';
+						
+					else :
+					
+						// nothing
+						
+					endif;
+					
+					echo '</div>';
+					
+				endif;
 	
 			endwhile;
 			
-			echo '<p style="margin-top: 40px;">Next Weeks Barrel:</p>';
-			
 			while ( have_rows('next_weeks_barrel') ) : the_row();
 			
-				echo '<div class="tap_item">';
+				if( get_sub_field('item_active')):
+				
+					echo '<p style="margin-top: 40px;">Next Weeks Barrel:</p>';
 			
-				echo '<h3 class="tap_title">';
-		        
-				the_sub_field('name');
+					echo '<div class="tap_item">';
 				
-				echo '</h3>';
+					echo '<h3 class="tap_title">';
+			        
+					the_sub_field('name');
 					
-				the_sub_field('description');
-				
-				echo '</div>';
+					echo '</h3>';
+						
+					the_sub_field('description');
+					
+					$options = get_sub_field('avaliable_in');
+					
+					if( $options ):
+					
+						echo '<ul>';
+						
+						foreach( $options as $option ):
+						
+							echo '<li>';
+							
+							echo '<span class="';
+							
+							echo $option;
+							
+							echo '-icon"></span>';
+							
+							echo '</li>';
+							
+						endforeach;
+						
+						echo '</ul>';
+						
+					else :
+					
+						// nothing
+						
+					endif;
+					
+					echo '</div>';
+					
+				endif;
 	
 			endwhile;
 			
@@ -263,63 +337,203 @@
 						
 			while ( have_rows('blenders_reserve_taps') ) : the_row();
 			
-				echo '<div class="tap_item">';
+				if( get_sub_field('item_active')):
 			
-				echo '<h3 class="tap_title">';
-		        
-				the_sub_field('name');
+					echo '<div class="tap_item">';
 				
-				echo '</h3>';
+					echo '<h3 class="tap_title">';
+			        
+					the_sub_field('name');
 					
-				the_sub_field('description');
-				
-				$options = get_sub_field('avaliable_in');
-				
-				if( $options ):
-				
-					echo '<ul>';
+					echo '</h3>';
+						
+					the_sub_field('description');
 					
-					foreach( $options as $option ):
+					$options = get_sub_field('avaliable_in');
 					
-						echo '<li>';
-						
-						echo '<span class="';
-						
-						echo $option;
-						
-						echo '-icon"></span>';
-						
-						echo '</li>';
-						
-					endforeach;
+					if( $options ):
 					
-					echo '</ul>';
+						echo '<ul>';
+						
+						foreach( $options as $option ):
+						
+							echo '<li>';
+							
+							echo '<span class="';
+							
+							echo $option;
+							
+							echo '-icon"></span>';
+							
+							echo '</li>';
+							
+						endforeach;
+						
+						echo '</ul>';
+						
+					else :
 					
-				else :
-				
-					echo 'Not Currently Available';
+						// nothing
+						
+					endif;
+					
+					echo '</div>';
 					
 				endif;
-				
-				echo '</div>';
 	
 			endwhile;
 			
 			echo '<h1 style="margin-top: 80px;">On Nitro!</h1>';
 			
+			
+			
 			while ( have_rows('on_nitro') ) : the_row();
 			
-				echo '<div class="tap_item">';
+				if( get_sub_field('item_active')):
 			
-				echo '<h3 class="tap_title">';
-		        
-				the_sub_field('name');
+					echo '<div class="tap_item">';
 				
-				echo '</h3>';
+					echo '<h3 class="tap_title">';
+			        
+					the_sub_field('name');
 					
-				the_sub_field('description');
+					echo '</h3>';
+						
+					the_sub_field('description');
+					
+					$options = get_sub_field('avaliable_in');
+					
+					if( $options ):
+					
+						echo '<ul>';
+						
+						foreach( $options as $option ):
+						
+							echo '<li>';
+							
+							echo '<span class="';
+							
+							echo $option;
+							
+							echo '-icon"></span>';
+							
+							echo '</li>';
+							
+						endforeach;
+						
+						echo '</ul>';
+						
+					else :
+					
+						// nothing
+						
+					endif;
+					
+					echo '</div>';
+					
+				endif;
+	
+			endwhile;
+			
+			echo '<h1 style="margin-top: 80px;">Guest Taps</h1>';
+			
+			echo '<p>Available In:<br /><span class="bottle-icon"></span> Bottle, <span class="growler-icon"></span> Growler, <span class="grenade-icon"></span> Grenade</p>';
+			
+			while ( have_rows('guest_tap') ) : the_row();
+			
+				if( get_sub_field('item_active')):
+			
+					echo '<div class="tap_item">';
 				
-				echo '</div>';
+					echo '<h3 class="tap_title">';
+			        
+					the_sub_field('name');
+					
+					echo '</h3>';
+						
+					the_sub_field('description');
+					
+					$options = get_sub_field('avaliable_in');
+					
+					if( $options ):
+					
+						echo '<ul>';
+						
+						foreach( $options as $option ):
+						
+							echo '<li>';
+							
+							echo '<span class="';
+							
+							echo $option;
+							
+							echo '-icon"></span>';
+							
+							echo '</li>';
+							
+						endforeach;
+						
+						echo '</ul>';
+						
+					else :
+					
+						// nothing
+						
+					endif;
+					
+					echo '</div>';
+					
+				endif;
+	
+			endwhile;
+			
+			echo '<h1 style="margin-top: 80px;">Wine & Cider</h1>';
+		
+			while ( have_rows('winecider') ) : the_row();
+			
+				if( get_sub_field('item_active')):
+			
+					echo '<div class="tap_item">';
+				
+					echo '<h3 class="tap_title">';
+			        
+					the_sub_field('name');
+					
+					echo '</h3>';
+						
+					the_sub_field('description');
+					
+					$options = get_sub_field('avaliable_in');
+					
+					if( $options ):
+					
+						echo '<ul>';
+						
+						foreach( $options as $option ):
+						
+							echo '<li>';
+							
+							echo '<span class="';
+							
+							echo $option;
+							
+							echo '-icon"></span>';
+							
+							echo '</li>';
+							
+						endforeach;
+						
+						echo '</ul>';
+						
+					else :
+					
+						// nothing
+						
+					endif;
+					
+					echo '</div>';
+					
+				endif;
 	
 			endwhile;
 					
@@ -327,7 +541,7 @@
 		
 		else :
 		
-			echo '<div class="col_4 last"><div class="content" id="on_tap">Nothing Column 3</div></div>';
+			echo '<div class="col_4 last"><div class="content" id="on_tap"></div></div>';
 		
 		endif;
 		

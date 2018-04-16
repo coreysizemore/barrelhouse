@@ -83,33 +83,65 @@
 		
 		echo '<div class="container"><div class="row gutters">';
 		
-		if( have_rows('retailers') ):
+		if( have_rows('eventschedule') ):
 			
-			echo '<div class="col_12"><div class="content" id="retailer_list">';
+			echo '<div class="col_12"><div class="content" id="schedule_list">';
 			
-			echo '<h1>Retailers</h1>';
+			echo '<h1>';
 			
-			echo '<p>Please call ahead to check for specific product availability.</p>';
+			the_field('heading');
+			
+			echo '</h1>';
+			
+			echo '<p>';
+			
+			the_field('description');
+			
+			echo '</p>';
 						
-			while ( have_rows('retailers') ) : the_row();
+			while ( have_rows('eventschedule') ) : the_row();
 			
-				echo '<div class="retailer_item"><div class="retailer_name">';
-
-				the_sub_field('name');
-
-				echo '</div>';
-				
-				echo '<div class="retailer_address">';
+				if (get_sub_field('tapper')):
+			
+					echo '<div class="schedule_item">';
 					
-				the_sub_field('address');
-				
-				echo '</div>';
-				
-				echo '<div class="retailer_website"><a href="';
+					echo '<span class="schedule_date"><strong>';
+
+					the_sub_field('date');
+	
+					echo '</strong></span>';
 					
-				the_sub_field('website');
+					echo '<span class="schedule_tapper"><strong>Tapper: </strong>';
+						
+					the_sub_field('tapper');
+					
+					echo '</span>';
+					
+					echo '<span class="schedule_holder"><strong>Holder: </strong>';
+						
+					the_sub_field('holder');
+					
+					echo '</span>';
+					
+					echo '<span class="schedule_from"><strong>From: </strong>';
+						
+					the_sub_field('from');
+					
+					echo '</span></div>';
 				
-				echo '" target="_blank">Visit Website</a></div></div>';
+				else :
+				
+					echo '<a href="http://www.coreysizemore.com/barrelhouse/tap-tuesday-sign/"><div class="schedule_item avail">';
+					
+					echo '<span class="schedule_date"><strong>';
+
+					the_sub_field('date');
+	
+					echo '</strong></span>';
+					
+					echo '<span class="schedule_tapper"><strong>Space Available</strong></span></div></a>';
+					
+				endif;
 	
 			endwhile;
 					
@@ -117,7 +149,7 @@
 							
 		else :
 		
-			echo '<div class="col_12"><div class="content" id="retailer_list">No Retailers</div></div>';
+			echo '<div class="col_12"><div class="content" id="retailer_list">No Schedule Items</div></div>';
 				
 		endif;
 		

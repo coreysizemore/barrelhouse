@@ -344,6 +344,57 @@ footer {
 }
 
 
+/* events schedule */
+
+#schedule_list {
+	.schedule_item {
+		border: 2px solid #537963;
+		margin-bottom: 10px;
+		padding: 20px;
+		border-radius: 10px;
+		transition: opacity .15s linear;
+		
+		span {
+			display: inline-block;
+			width: 25%;
+		}
+		
+		&.avail {
+			background: #537963;
+			cursor: pointer;
+			
+			span {
+				color: #ffffff;
+				
+				a:link,
+				a:visited {
+					color: #ffffff;
+				}
+			}
+		}
+		
+		&.avail:hover {
+			opacity: .7;
+		}
+	}
+}
+
+/* tap it form */
+
+.content {
+	form {
+		p {
+			padding: 0px;
+			margin: 0px;
+		}
+		
+		.hide {
+			display: none;
+		}
+	}
+}
+
+
 @media (min-width: 980px) and (max-width: 1220px) {
 	
 	header {
@@ -416,6 +467,16 @@ footer {
 		}
 	}
 	
+	#schedule_list {
+		.schedule_item {
+			span {
+				display: inline-block;
+				padding: 10px 0px;
+				width: 100%;
+			}
+		}
+	}
+	
 }
 	
 @media (min-width: 0px) and (max-width: 479px) {
@@ -440,6 +501,16 @@ footer {
 			
 			img {
 				width: 150px;
+			}
+		}
+	}
+	
+	#schedule_list {
+		.schedule_item {
+			span {
+				display: inline-block;
+				padding: 10px 0px;
+				width: 100%;
 			}
 		}
 	}
