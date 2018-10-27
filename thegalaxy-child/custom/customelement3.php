@@ -2,6 +2,8 @@
 
 	if( have_rows('limited_kitchen_creations', 'option') ):
 	
+		echo '<div class="kitchen_wrapper">';
+	
 		echo '<h2>Limited Kitchen Creations</h2>';
 					
 		while ( have_rows('limited_kitchen_creations', 'option') ) : the_row();
@@ -19,6 +21,8 @@
 			echo '</div>';
 
 		endwhile;
+		
+		echo '</div>';
 						
 	else :
 			

@@ -9,35 +9,10 @@
 
 <?php if(is_user_logged_in()):?>
 
-<?php
-	
-	if( get_field('secondary_navigation') ):
-	
-		if ( has_nav_menu( 'secondary_nav' ) ):
-		
-	    	echo get_template_part( 'navs/nav', 'secondary' );
-	    	    	
-	    endif;
-    
-    endif;
-    
-?>
-
-<?php 
-	
-	if( get_field('display_call_out_boxes') ):
-
-		get_template_part( 'misc/calloutboxes' );
-		
-	endif;
-		
-?>
-
-<div class="main <?php echo basename(get_permalink()); ?> ">
+<div id="main" class="<?php echo basename(get_permalink()); ?> ">
 	
 	<?php if ( function_exists('yoast_breadcrumb') ) {yoast_breadcrumb('<div class="container"><div class="row gutters"><div class="col_12"><div class="breadcrumb_wrapper"><span class="breadcrumbs">','</span></div></div></div></div>');} ?>
 
-	<?php if( get_field('default_editor')): ?>
 	
 		<div class="default_editor">
 		
@@ -45,58 +20,8 @@
 					
 				<div class="row gutters">
 						
-					<?php if( get_field('sidebar_selection') == 'right' ): ?>
-						
-						<div class="col_9">
-								
-							<div class="content">
 					
-								<?php get_template_part( 'loops/loop', 'page' ); ?>
-								
-								<?php
-	
-									if( get_field('gallery') ):
-								
-										get_template_part( 'misc/gallery' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
 									
-									if( get_field('accordion') ):
-								
-										get_template_part( 'misc/accordion' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
-									
-									if( get_field('tabs') ):
-								
-										get_template_part( 'misc/tabs' );
-										
-									endif;
-										
-								?>
-									
-							</div>
-								
-						</div>
-							
-						<div class="col_3">
-								
-							<?php get_template_part( 'sidebars/sidebar' , 'primary' ); ?>
-								
-						</div>
-					
-					<?php endif; ?>
-					
-					<?php if( get_field('sidebar_selection') == 'none' ): ?>
-					
 						<div class="col_12">
 							
 							<div class="content">
@@ -124,7 +49,7 @@
 										
 									// manage listings
 										
-									$sql = "SELECT * FROM tap_it";
+									$sql = "SELECT * FROM tap_it ORDER BY id ASC";
 	
 									$result = $conn->query($sql);
 										
@@ -133,6 +58,10 @@
 										echo '<div class="tap_it_table_wrapper admin">';
 										    
 										while($row = $result->fetch_assoc()) {
+											
+											$databasedate = $row["date"];
+											    
+											$displaydate = date('m/d/Y', substr($databasedate, 0, 10));
 											    
 											if ($row["approved"] == 'No') {
 												    
@@ -140,7 +69,7 @@
 												    
 												echo '<span><form action="' . get_home_url() . '/tap-it-tuesday-approve/" method="post"><input type="text" name="num" style="display: none;" value="' . $row["id"] . '" /><input type="submit" value="Approve" /></form> | <form action="' . get_home_url() . '/tap-it-tuesday-unapprove/" method="post"><input type="text" name="num" style="display: none;" value="' . $row["id"] . '" /><input type="submit" value="Deny" /></form></span>';
 											    
-												echo '<span><strong>' . $row["date"] . '</strong></span>';
+												echo '<span><strong>' . $displaydate . '</strong></span>';
 												    
 												echo '<span><strong>Tapper:</strong> ' . $row["tapper"] . '</span>';
 												    
@@ -156,7 +85,7 @@
 												    
 												echo '<span>Approved | <form action="' . get_home_url() . '/tap-it-tuesday-unapprove/" method="post"><input type="text" name="num" style="display: none;" value="' . $row["id"] . '" /><input type="submit" value="Deny" /></form></span>';
 											    
-												echo '<span><strong>' . $row["date"] . '</strong></span>';
+												echo '<span><strong>' . $displaydate . '</strong></span>';
 												    
 												echo '<span><strong>Tapper:</strong> ' . $row["tapper"] . '</span>';
 												    
@@ -184,99 +113,19 @@
 									
 								?>
 								
-								<?php
-	
-									if( get_field('gallery') ):
 								
-										get_template_part( 'misc/gallery' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
-									
-									if( get_field('accordion') ):
-								
-										get_template_part( 'misc/accordion' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
-									
-									if( get_field('tabs') ):
-								
-										get_template_part( 'misc/tabs' );
-										
-									endif;
-										
-								?>
 								
 							</div>
 							
 						</div>
-					
-					<?php endif; ?>
-					
-					<?php if( get_field('sidebar_selection') == 'left' ): ?>
-					
-						<div class="col_3">
-								
-							<?php get_template_part( 'sidebars/sidebar' , 'primary' ); ?>
-							
-						</div>
-						
-						<div class="col_9">
-							
-							<div class="content">
-				
-								<?php get_template_part( 'loops/loop', 'page' ); ?>
-								
-								<?php
-	
-									if( get_field('gallery') ):
-								
-										get_template_part( 'misc/gallery' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
-									
-									if( get_field('accordion') ):
-								
-										get_template_part( 'misc/accordion' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
-									
-									if( get_field('tabs') ):
-								
-										get_template_part( 'misc/tabs' );
-										
-									endif;
-										
-								?>
-								
-							</div>
-							
-						</div>
-					
-					<?php endif; ?>
+
 						
 				</div>
 				
 			</div>
 			
 		</div>
-	
-	<?php endif; ?>
+
 		
 	<?php if(is_user_logged_in()):?>
 	
@@ -289,20 +138,5 @@
 	<?php endif; ?>
 
 </div>
-
-<?php get_template_part( 'misc/parallax' ); ?>
-
-<?php
-
-	if(get_field('appointment_feature'))
-	{
-		get_template_part( 'sidebars/sidebar' , 'appointment' );
-	}
-						
-?>
-
-<?php else : ?>
-
-	<?php get_template_part( 'misc/loggedout' ); ?>
 
 <?php endif; ?>

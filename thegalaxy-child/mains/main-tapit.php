@@ -7,101 +7,21 @@
 	 
 ?>
 
-<?php
-	
-	if( get_field('secondary_navigation') ):
-	
-		if ( has_nav_menu( 'secondary_nav' ) ):
-		
-	    	echo get_template_part( 'navs/nav', 'secondary' );
-	    	    	
-	    endif;
-    
-    endif;
-    
-?>
-
-<?php 
-	
-	if( get_field('display_call_out_boxes') ):
-
-		get_template_part( 'misc/calloutboxes' );
-		
-	endif;
-		
-?>
-
-<div class="main <?php echo basename(get_permalink()); ?> ">
+<div id="main" class="<?php echo basename(get_permalink()); ?> ">
 	
 	<?php if ( function_exists('yoast_breadcrumb') ) {yoast_breadcrumb('<div class="container"><div class="row gutters"><div class="col_12"><div class="breadcrumb_wrapper"><span class="breadcrumbs">','</span></div></div></div></div>');} ?>
-
-	<?php if( get_field('default_editor')): ?>
 	
 		<div class="default_editor">
 		
 			<div class="container">
 					
 				<div class="row gutters">
-						
-					<?php if( get_field('sidebar_selection') == 'right' ): ?>
-						
-						<div class="col_9">
-								
-							<div class="content">
-					
-								<?php get_template_part( 'loops/loop', 'page' ); ?>
-								
-								<?php
-	
-									if( get_field('gallery') ):
-								
-										get_template_part( 'misc/gallery' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
-									
-									if( get_field('accordion') ):
-								
-										get_template_part( 'misc/accordion' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
-									
-									if( get_field('tabs') ):
-								
-										get_template_part( 'misc/tabs' );
-										
-									endif;
-										
-								?>
-									
-							</div>
-								
-						</div>
-							
-						<div class="col_3">
-								
-							<?php get_template_part( 'sidebars/sidebar' , 'primary' ); ?>
-								
-						</div>
-					
-					<?php endif; ?>
-					
-					<?php if( get_field('sidebar_selection') == 'none' ): ?>
 					
 						<div class="col_12">
 							
 							<div class="content">
 				
 								<?php get_template_part( 'loops/loop', 'page' ); ?>
-								
-								
 								
 								<?php
 							
@@ -124,10 +44,6 @@
 										endforeach;
 										
 										echo '</div>';
-																	
-									else :
-														
-										//do nothing
 																	
 									endif;
 																			
@@ -156,7 +72,13 @@
 									
 									// delete anything that has expired
 									
-									$todaysdate = date('m/d/Y');
+									date_default_timezone_set('America/Los_Angeles');
+									
+									$todaysdate = idate('U') + 28800;
+									
+									//$todaysdate = 1541577600 + 28800;
+									
+									//$todaysdate = 1542182400 + 28800;
 	
 									$sql = "SELECT * FROM tap_it";
 									
@@ -168,7 +90,7 @@
 										    
 										    $lastdate = $row["date"];
 										    
-										    $date = date_create($lastdate);
+										    $date = $lastdate;
 										    
 										    if ($lastdate < $todaysdate) {
 											    
@@ -196,31 +118,41 @@
 									
 									$z = 0;
 									
+									$lid = 0;
+									
 									if ($result->num_rows > 0) {
 									    
 									    while($row = $result->fetch_assoc()) {
 										    
-										    $lastdate = $row["date"];
+										    $lastid = $row["id"];
+										    
+										    if ($lastid > $lid) {
+											    
+											    $lid = $lastid;
+											    
+											    $lastdate = $row["date"];
+											    
+										    }
 										    
 										    $z++;
 										    
 										}
 										
+									} else {
+										
+										$lastdate = 1540882800 + 28800;
+										
 									}
 									
 									$howmany = 10 - $z;
 									
-									$todaysdate = date('m/d/Y');
-									
-									$date = date_create($lastdate);
+									$date = $lastdate;
 								
 									for ($x = 0; $x < $howmany; $x++) {
 										
-										date_add($date, date_interval_create_from_date_string('7 days'));
-											
-										$newdate = date_format($date, 'm/d/Y');
+										$date = $date + 604800;
 										
-										$sql = "INSERT INTO tap_it (approved, date, tapper, holder, location) VALUES ('No', '$newdate', '', '', '')";
+										$sql = "INSERT INTO tap_it (approved, date, tapper, holder, location) VALUES ('No', '$date', '', '', '')";
 										
 										if ($conn->query($sql) === TRUE) {
 											    
@@ -234,7 +166,7 @@
 									
 									// display table
 									
-									$sql = "SELECT * FROM tap_it";
+									$sql = "SELECT * FROM tap_it ORDER BY id ASC";
 									
 									$result = $conn->query($sql);
 									
@@ -244,11 +176,15 @@
 									    
 									    while($row = $result->fetch_assoc()) {
 										    
+										    $databasedate = $row["date"];
+											    
+											$displaydate = date('m/d/Y', substr($databasedate, 0, 10));
+										    
 										    if ($row["approved"] == 'Yes') {
 											    
 											    echo '<div class="table_row">';
 										    
-											    echo '<span>' . $row["date"] . '</span>';
+											    echo '<span>' . $displaydate . '</span>';
 											    
 											    echo '<span><strong>Tapper:</strong> ' . $row["tapper"] . '</span>';
 											    
@@ -262,7 +198,7 @@
 											    
 											    echo '<div class="table_row empty">';
 										    
-											    echo '<span>' . $row["date"] . '</span>';
+											    echo '<span>' . $displaydate . '</span>';
 											    
 											    echo '<span><form action="' . get_home_url() . '/tap-it-tuesday-submission/" method="post"><input type="text" name="num" style="display: none;" value="' . $row["id"] . '" /><input type="text" name="select" style="display: none;" value="' . $row["date"] . '" /><input type="submit" value="Space Available, Click Here" /></form></span></span>';
 										        
@@ -290,99 +226,15 @@
 									
 								?>
 								
-								<?php
-	
-									if( get_field('gallery') ):
-								
-										get_template_part( 'misc/gallery' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
-									
-									if( get_field('accordion') ):
-								
-										get_template_part( 'misc/accordion' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
-									
-									if( get_field('tabs') ):
-								
-										get_template_part( 'misc/tabs' );
-										
-									endif;
-										
-								?>
-								
 							</div>
 							
 						</div>
-					
-					<?php endif; ?>
-					
-					<?php if( get_field('sidebar_selection') == 'left' ): ?>
-					
-						<div class="col_3">
-								
-							<?php get_template_part( 'sidebars/sidebar' , 'primary' ); ?>
-							
-						</div>
-						
-						<div class="col_9">
-							
-							<div class="content">
-				
-								<?php get_template_part( 'loops/loop', 'page' ); ?>
-								
-								<?php
-	
-									if( get_field('gallery') ):
-								
-										get_template_part( 'misc/gallery' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
-									
-									if( get_field('accordion') ):
-								
-										get_template_part( 'misc/accordion' );
-										
-									endif;
-										
-								?>
-								
-								<?php 
-									
-									if( get_field('tabs') ):
-								
-										get_template_part( 'misc/tabs' );
-										
-									endif;
-										
-								?>
-								
-							</div>
-							
-						</div>
-					
-					<?php endif; ?>
 						
 				</div>
 				
 			</div>
 			
 		</div>
-	
-	<?php endif; ?>
 		
 	<?php if(is_user_logged_in()):?>
 	
@@ -395,14 +247,3 @@
 	<?php endif; ?>
 
 </div>
-
-<?php get_template_part( 'misc/parallax' ); ?>
-
-<?php
-
-	if(get_field('appointment_feature'))
-	{
-		get_template_part( 'sidebars/sidebar' , 'appointment' );
-	}
-						
-?>
