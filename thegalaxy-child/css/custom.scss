@@ -90,7 +90,14 @@ header {
 	&#header_page {
 		background: url('../img/page.jpg') no-repeat;
 		background-size: cover;
-		background-attachment: fixed;	
+		background-attachment: fixed;
+		
+		#page_title {
+			h1.heading,
+			h2.subheading {
+				color: #000000;
+			}
+		}
 	}
 	
 	#nav_bar {
@@ -485,6 +492,27 @@ footer {
 				height: 100%;
 				vertical-align: middle;
 			}
+			
+			&.link {
+				width: calc(75% - 40px);
+				
+				a:link,
+				a:visited {
+					background: $colorone;
+					color: #ffffff !important;
+					border: none;
+					display: block;
+					font-weigh: 700;
+					margin: 0px;
+					padding: 10px;
+					text-align: center;
+					width: calc(100% - 20px);
+					-webkit-border-radius: 5px;
+					-moz-border-radius: 5px;
+					-ms-border-radius: 5px;
+					border-radius: 5px;
+				}
+			}
 		}
 	}
 	
@@ -551,6 +579,11 @@ footer {
 		label[for="data_id"],
 		label[for="data_3_input"] {
 			display: none;
+		}
+		
+		textarea + label {
+			color: $colorone;
+			font-size: 16px;
 		}
 	}
 }

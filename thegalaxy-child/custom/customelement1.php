@@ -174,7 +174,7 @@
 
 		endwhile;
 		
-		echo '<h1 style="margin-top: 80px;">Blenders Reserve Taps</h1>';
+		echo '<h1 style="margin-top: 80px;">From the Cellar</h1>';
 		
 		echo '<p>Available In:<br /><span class="bottle-icon"></span> Bottle, <span class="growler-icon"></span> Growler, <span class="grenade-icon"></span> Grenade</p>';
 					
