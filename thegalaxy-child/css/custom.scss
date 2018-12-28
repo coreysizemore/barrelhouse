@@ -82,7 +82,7 @@ a#mobileopen {
 header {
 	
 	&#header_home {
-		background: url('../img/home.jpg') no-repeat;
+		background: url('../img/home1.jpg') no-repeat;
 		background-size: cover;
 		background-attachment: fixed;	
 	}
@@ -92,6 +92,15 @@ header {
 		background-size: cover;
 		background-attachment: fixed;
 		
+		#page_title {
+			h1.heading,
+			h2.subheading {
+				color: #000000;
+			}
+		}
+	}
+	
+	&#header_page_mobile {
 		#page_title {
 			h1.heading,
 			h2.subheading {
@@ -306,6 +315,17 @@ header {
 						}
 					}
 				}
+			}
+		}
+	}
+}
+
+#gallery {
+	.gallery_wrapper {
+		a:link,
+		a:visited {
+			.filter:hover {
+				background: rgba($colorone, .5);
 			}
 		}
 	}
@@ -818,7 +838,7 @@ footer {
 	
 	header {
 		&#header_home_mobile {
-			background: url('../img/home.jpg') no-repeat;
+			background: url('../img/home1.jpg') no-repeat;
 			background-size: cover;
 			background-attachment: fixed;	
 		}
@@ -840,7 +860,7 @@ footer {
 	
 	header {
 		&#header_home_mobile {
-			background: url('../img/home_mobile.jpg') no-repeat;
+			background: url('../img/home1_mobile.jpg') no-repeat;
 			background-size: cover;
 			background-attachment: fixed;	
 		}
@@ -862,7 +882,7 @@ footer {
 	
 	header {
 		&#header_home_mobile {
-			background: url('../img/home_mobile.jpg') no-repeat;
+			background: url('../img/home1_mobile.jpg') no-repeat;
 			background-size: cover;
 			background-attachment: fixed;	
 		}
@@ -892,7 +912,7 @@ footer {
 	
 	header {
 		&#header_home_mobile {
-			background: url('../img/home_mobile.jpg') no-repeat;
+			background: url('../img/home1_mobile.jpg') no-repeat;
 			background-size: cover;
 			background-attachment: fixed;	
 		}

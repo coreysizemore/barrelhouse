@@ -18,6 +18,8 @@ $(document).ready(function() {
 			
 			sessionStorage.setItem("formDate", date);
 			
+			console.log(date);
+			
 		});
 	}
 	
@@ -26,6 +28,8 @@ $(document).ready(function() {
 		var submitDate = sessionStorage.getItem("formDate");
 		
 		$('#Field3').val(submitDate);
+		
+		console.log(submitDate);
 	
 	}
 	
