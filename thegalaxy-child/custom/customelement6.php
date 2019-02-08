@@ -30,7 +30,7 @@
 				    
 				    echo '</span>';
 				    
-			        echo '<span><strong>Location:</strong> ';
+			        echo '<span><strong>Hometown:</strong> ';
 			        
 			        echo the_sub_field('location');
 			        
