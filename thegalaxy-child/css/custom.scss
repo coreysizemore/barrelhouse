@@ -365,6 +365,30 @@ header {
 	}
 }
 
+/* blog page */
+
+#main {
+	&.blog_home {
+		background: #f5f5f5;
+	}
+}
+
+div.blog_sidebar {
+	background: #f5f5f5;
+}
+
+article.blog_entry,
+.blog_home article.blog_preview {
+	.blog_image_single.default {
+		background: url('../img/parallax.jpg') no-repeat;
+		background-size: cover;
+	}
+	
+	.blog_image_preview.default {
+		background: url('../img/parallax.jpg') no-repeat;
+		background-size: cover;
+	}
+}
 
 
 /* blog page */
@@ -672,6 +696,11 @@ footer {
 			background-size: 15px;
 		}
 		
+		span.tallboy-icon {
+			background: url('../img/icon_tallboy.png') no-repeat;
+			background-size: 15px;
+		}
+		
 		.tap_item {
 			cursor: pointer;
 			padding: 10px 0px;
@@ -718,6 +747,11 @@ footer {
 					
 					span.grenade-icon {
 						background: url('../img/icon_grenade.png') no-repeat;
+						background-size: 20px;
+					}
+					
+					span.tallboy-icon {
+						background: url('../img/icon_tallboy.png') no-repeat;
 						background-size: 20px;
 					}
 				}

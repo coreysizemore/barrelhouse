@@ -8,7 +8,7 @@
 		
 		echo '<h1>On Tap</h1>';
 		
-		echo '<p>Available In:<br /><span class="bottle-icon"></span> Bottle, <span class="growler-icon"></span> Growler, <span class="grenade-icon"></span> Grenade</p>';
+		echo '<p>Available In:<br /><span class="bottle-icon"></span> Bottle, <span class="growler-icon"></span> Growler, <span class="grenade-icon"></span> Grenade, <span class="tallboy-icon"></span> Tall Boy</p>';
 					
 		while ( have_rows('on_tap_list', 'option') ) : the_row();
 		
@@ -176,7 +176,7 @@
 		
 		echo '<h1 style="margin-top: 80px;">From the Cellar</h1>';
 		
-		echo '<p>Available In:<br /><span class="bottle-icon"></span> Bottle, <span class="growler-icon"></span> Growler, <span class="grenade-icon"></span> Grenade</p>';
+		echo '<p>Available In:<br /><span class="bottle-icon"></span> Bottle, <span class="growler-icon"></span> Growler, <span class="grenade-icon"></span> Grenade, <span class="tallboy-icon"></span> Tall Boy</p>';
 					
 		while ( have_rows('blenders_reserve_taps', 'option') ) : the_row();
 		
@@ -280,7 +280,7 @@
 		
 		echo '<h1 style="margin-top: 80px;">Guest Taps</h1>';
 		
-		echo '<p>Available In:<br /><span class="bottle-icon"></span> Bottle, <span class="growler-icon"></span> Growler, <span class="grenade-icon"></span> Grenade</p>';
+		echo '<p>Available In:<br /><span class="bottle-icon"></span> Bottle, <span class="growler-icon"></span> Growler, <span class="grenade-icon"></span> Grenade, <span class="tallboy-icon"></span> Tall Boy</p>';
 		
 		while ( have_rows('guest_tap', 'option') ) : the_row();
 		
