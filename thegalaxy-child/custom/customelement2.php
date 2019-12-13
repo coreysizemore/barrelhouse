@@ -153,6 +153,78 @@
 		endwhile;
 		
 		
+		
+		echo '<br/><br /><br /><h1>16oz Can Sales</h1>';
+		
+		
+		
+		
+		
+		while ( have_rows('bottle_sales_list', 'option') ) : the_row();
+		
+			if (get_sub_field('bottle_size') == 'can'):
+		
+				if( get_sub_field('item_active')):
+			
+					echo '<div class="tap_item">';
+					
+					echo '<img src="';
+					
+					the_sub_field('bottle_image');
+					
+					echo '" />';
+				
+					echo '<h3 class="tap_title">';
+			        
+					the_sub_field('name');
+					
+					echo '</h3>';
+						
+					the_sub_field('description');
+					
+					$options = get_sub_field('available_at');
+					
+					if( $options ):
+					
+						echo '<ul>';
+						
+						foreach( $options as $option ):
+						
+							echo '<li>';
+							
+							if ($option == 'inhouse'):
+							
+								echo 'In House&nbsp;';
+								
+							endif;
+							
+							if ($option == 'retailer'):
+							
+								echo ' or <a href="#">Local Retailer</a>';
+								
+							endif;
+	
+							echo '</li>';
+							
+						endforeach;
+						
+						echo '</ul>';
+						
+					else :
+					
+						// nothing
+						
+					endif;
+					
+					echo '</div>';
+					
+				endif;
+			
+			endif;
+
+		endwhile;
+		
+		
 					
 		echo '</div></div>';
 	

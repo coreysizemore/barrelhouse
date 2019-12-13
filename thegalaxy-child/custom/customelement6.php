@@ -38,7 +38,7 @@
 			        
 			    else :
 			    
-			    	echo '<span class="link"><a href="http://www.cascadebrewingbarrelhouse.com/tap-it-tuesday-submission/">Date Available</a></span>';
+			    	echo '<span class="link"><a href="https://www.cascadebrewingbarrelhouse.com/tap-it-tuesday-submission/">Date Available</a></span>';
 			        
 			    endif;
 		        
