@@ -70,9 +70,9 @@
 	
 		echo '<div class="col_6"><div class="content" id="on_tap">';
 	
-		echo '<h1>Live From the Barrel</h1>';
+		//echo '<h1>Live From the Barrel</h1>';
 		
-		echo '<p>Cask Beers on tap Now:</p>';
+		//echo '<p>Cask Beers on tap Now:</p>';
 		
 		
 		
@@ -128,7 +128,7 @@
 		
 			if( get_sub_field('item_active')):
 			
-				echo '<p style="margin-top: 40px;">Next Weeks Barrel:</p>';
+				echo '<p style="margin-top: 0px;">Next Weeks Barrel:</p>';
 		
 				echo '<div class="tap_item">';
 			
@@ -174,7 +174,7 @@
 
 		endwhile;
 		
-		echo '<h1 style="margin-top: 80px;">From the Cellar</h1>';
+		echo '<h1 style="margin-top: 0px;">From the Cellar</h1>';
 		
 		echo '<p>Available In:<br /><span class="bottle-icon"></span> Bottle, <span class="growler-icon"></span> Growler, <span class="grenade-icon"></span> Grenade, <span class="tallboy-icon"></span> Tall Boy</p>';
 					
