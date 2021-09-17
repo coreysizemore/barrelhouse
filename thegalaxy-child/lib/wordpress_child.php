@@ -99,6 +99,16 @@
 		));
 		
 		acf_add_options_sub_page(array(
+			'page_title' => 'Cans For Here',
+			'menu_title' => 'Cans For Here',
+			'menu_slug' => 'beer-lists-cans-for-here',
+			'capability' => 'edit_posts',
+			'parent_slug' => 'beer-lists',
+			'position' => false,
+			'icon_url' => false
+		));
+		
+		acf_add_options_sub_page(array(
 			'page_title' => 'Kitchen',
 			'menu_title' => 'Kitchen',
 			'menu_slug' => 'beer-lists-kitchen',

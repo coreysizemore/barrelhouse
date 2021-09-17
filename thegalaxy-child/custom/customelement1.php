@@ -379,6 +379,60 @@
 			endif;
 
 		endwhile;
+		
+		
+		echo '<h1 style="margin-top: 80px;">Cans For Here</h1>';
+	
+		while ( have_rows('cansforhere','option') ) : the_row();
+		
+			if( get_sub_field('item_active','option')):
+		
+				echo '<div class="tap_item">';
+			
+				echo '<h3 class="tap_title">';
+		        
+				the_sub_field('name','option');
+				
+				echo '</h3>';
+					
+				the_sub_field('description','option');
+				
+				$options = get_sub_field('avaliable_in','option');
+				
+				if( $options ):
+				
+					echo '<ul>';
+					
+					foreach( $options as $option ):
+					
+						echo '<li>';
+						
+						echo '<span class="';
+						
+						echo $option;
+						
+						echo '-icon"></span>';
+						
+						echo '</li>';
+						
+					endforeach;
+					
+					echo '</ul>';
+					
+				else :
+				
+					// nothing
+					
+				endif;
+				
+				echo '</div>';
+				
+			endif;
+
+		endwhile;
+		
+		
+		
 				
 		echo '</div></div>';
 	
